@@ -3,6 +3,7 @@ package pl.GtoClass.whatWeWillEat.registration;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.GtoClass.whatWeWillEat.appuser.AppUser;
+import pl.GtoClass.whatWeWillEat.appuser.AppUserRole;
 import pl.GtoClass.whatWeWillEat.appuser.AppUserService;
 
 @Service
@@ -18,6 +19,12 @@ public class RegistrationService {
            throw new IllegalStateException("email not valid");
        }
 
-        return appUserService.signUpUser(new AppUser(request.getFirstName()));
+        return appUserService.signUpUser(new AppUser(
+                request.getFirstName(),
+                request.getLastName(),
+                request.getEmail(),
+                request.getPassword(),
+                AppUserRole.USER
+                ));
     }
 }
